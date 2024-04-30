@@ -16,5 +16,14 @@ public class ShipmentService {
     @Async
     public void processDeliveryRequest(String order) {
         System.out.println("배송 요청 처리: " + order + " | Thread: " + Thread.currentThread().getName());
+
+        for(int i=0; i<10; i++) {
+            System.out.println(order + " " + i + " | Thread: " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(500);
+            } catch (Exception err) {
+                System.out.println(err);
+            }
+        }
     }
 }
