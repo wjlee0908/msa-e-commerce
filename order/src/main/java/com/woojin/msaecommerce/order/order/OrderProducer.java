@@ -15,8 +15,8 @@ public class OrderProducer {
     @Autowired
     private final PulsarTemplate<OrderMessage> pulsarTemplate;
 
-    public void send(Order order) throws PulsarClientException {
+    public void sendAsync(Order order) throws PulsarClientException {
         OrderMessage orderMessage = OrderMessage.fromEntity(order);
-        pulsarTemplate.send(ORDER_TOPIC, orderMessage);
+        pulsarTemplate.sendAsync(ORDER_TOPIC, orderMessage);
     }
 }
