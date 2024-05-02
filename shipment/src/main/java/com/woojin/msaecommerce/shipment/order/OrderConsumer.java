@@ -24,9 +24,14 @@ public class OrderConsumer {
      */
     @PulsarListener(subscriptionName = SUBSCRIPTION_NAME, topics = TOPIC_NAME)
     @Async
-    void listenCreated(OrderMessage message) {
+    void listenCreated(OrderMessage message) throws InterruptedException {
+        log.trace("OrderConsumer.listenCreated::" + Thread.currentThread().getName());
         log.trace("OrderConsumer.listenCreated::" + message.toString());
 
+        // Async 테스트를 위해 5초가 걸리게 설정함
+        Thread.sleep(5000);
+
         shipmentService.create(ShipmentCreateParam.fromOrderMessage(message));
+        log.trace("OrderConsumer.listenCreated::" + Thread.currentThread().getName() + "create finished" );
     }
 }
