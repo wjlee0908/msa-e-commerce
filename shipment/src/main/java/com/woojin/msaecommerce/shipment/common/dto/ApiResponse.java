@@ -1,4 +1,4 @@
-package com.woojin.msaecommerce.order.common.dto;
+package com.woojin.msaecommerce.shipment.common.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;

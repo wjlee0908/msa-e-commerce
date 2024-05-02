@@ -1,4 +1,4 @@
-package com.woojin.msaecommerce.order.common;
+package com.woojin.msaecommerce.shipment.common;
 
 import com.woojin.msaecommerce.order.common.dto.ApiResponse;
 import org.springframework.http.HttpStatus;
