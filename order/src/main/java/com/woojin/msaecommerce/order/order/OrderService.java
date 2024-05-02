@@ -20,7 +20,7 @@ public class OrderService {
     private final PulsarTemplate<OrderMessage> pulsarTemplate;
 
     public OrderResponse create(OrderRequest request) throws PulsarClientException {
-        log.debug("create order");
+        log.info("OrderService::create order");
 
         // 결제 검증
         // 결제 서비스에 요청

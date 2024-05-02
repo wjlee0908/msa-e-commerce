@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -15,11 +17,17 @@ public class OrderMessage {
 
     private Long productId;
 
+    private Integer quantity;
+
+    private LocalDateTime createdAt;
+
     public static OrderMessage fromEntity(Order order) {
         return OrderMessage.builder()
                 .id(order.getId())
                 .userId(order.getUserId())
                 .productId(order.getProductId())
+                .quantity(order.getQuantity())
+                .createdAt(order.getCreatedAt())
                 .build();
     }
 }
