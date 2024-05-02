@@ -9,3 +9,23 @@ services:
       - 6650:6650
       - 8080:8080
     restart: unless-stopped
+    networks:
+      - pulsar_network
+
+  pulsar-manager:
+    container_name: pulsar-manager
+    image: apachepulsar/pulsar-manager:latest
+    ports:
+      - 9527:9527
+      - 7750:7750
+    depends_on:
+      - pulsar
+    environment:
+      SPRING_CONFIGURATION_FILE: /pulsar-manager/pulsar-manager/application.properties
+    networks:
+      - pulsar_network
+
+networks:
+  pulsar_network:
+    name: pulsar_network
+    driver: bridge
