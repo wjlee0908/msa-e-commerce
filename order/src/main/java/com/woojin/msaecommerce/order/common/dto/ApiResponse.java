@@ -7,7 +7,7 @@ import lombok.Builder;
 
 @Builder
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ApiResponse {
+public class ApiResponse<TData> {
     private Integer code;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -19,5 +19,5 @@ public class ApiResponse {
     private String message;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Object data;
+    private TData data;
 }
