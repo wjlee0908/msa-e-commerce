@@ -1,5 +1,6 @@
 package com.woojin.msaecommerce.shipment.shipment;
 
+import com.woojin.msaecommerce.shipment.shipment.dto.ShipmentCreateParam;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
+@ToString
 public class Shipment {
     private Long id;
 
@@ -28,4 +30,11 @@ public class Shipment {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    public static Shipment fromCreateParam(ShipmentCreateParam param, Long id) {
+        return Shipment.builder()
+                .id(id)
+                .orderId(param.getOrderId())
+                .build();
+    }
 }
