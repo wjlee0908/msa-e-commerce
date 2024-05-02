@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class OrderService {
-    private static final String ORDER_TOPIC = "order-topic";
-
-    @Autowired
-    private final PulsarTemplate<OrderMessage> pulsarTemplate;
+    private final OrderProducer orderProducer;
 
     public OrderResponse create(OrderRequest request) throws PulsarClientException {
         log.info("OrderService::create order");
@@ -29,8 +26,7 @@ public class OrderService {
         Order order = Order.fromRequest(request, Long.valueOf(1));
 
         // 주문 생성 이벤트 전파
-        OrderMessage orderMessage = OrderMessage.fromEntity(order);
-        pulsarTemplate.send(ORDER_TOPIC, orderMessage);
+        orderProducer.send(order);
 
         return OrderResponse.fromEntity(order);
     }
