@@ -17,7 +17,7 @@ public class OrderService {
     private final OrderProducer orderProducer;
 
     public OrderResponse create(OrderRequest request) throws PulsarClientException {
-        log.info("OrderService::create order");
+        log.trace("OrderService::create order");
 
         // 결제 검증
         // 결제 서비스에 요청
